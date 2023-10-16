@@ -14,6 +14,7 @@
 		0492B0902AD99A2400FCF487 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0492B08F2AD99A2400FCF487 /* Assets.xcassets */; };
 		0492B0932AD99A2400FCF487 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0492B0912AD99A2400FCF487 /* LaunchScreen.storyboard */; };
 		049ED65E2ADC67A600DE4A4B /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049ED65D2ADC67A600DE4A4B /* Character.swift */; };
+		049ED6602ADD607500DE4A4B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049ED65F2ADD607500DE4A4B /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0492B0922AD99A2400FCF487 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0492B0942AD99A2400FCF487 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		049ED65D2ADC67A600DE4A4B /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		049ED65F2ADD607500DE4A4B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				0492B0862AD99A2200FCF487 /* AppDelegate.swift */,
 				0492B0882AD99A2200FCF487 /* SceneDelegate.swift */,
+				049ED65F2ADD607500DE4A4B /* Helpers.swift */,
 				0492B08A2AD99A2200FCF487 /* ViewController.swift */,
 				049ED65D2ADC67A600DE4A4B /* Character.swift */,
 				0492B08C2AD99A2200FCF487 /* Main.storyboard */,
@@ -144,6 +147,7 @@
 				0492B08B2AD99A2200FCF487 /* ViewController.swift in Sources */,
 				0492B0872AD99A2200FCF487 /* AppDelegate.swift in Sources */,
 				0492B0892AD99A2200FCF487 /* SceneDelegate.swift in Sources */,
+				049ED6602ADD607500DE4A4B /* Helpers.swift in Sources */,
 				049ED65E2ADC67A600DE4A4B /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
