@@ -69,6 +69,26 @@ class ViewController: UIViewController {
         return label
     }()
     
+    private let characterDataStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 0
+        stackView.distribution = .fillEqually
+        stackView.backgroundColor = .cyan
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let stringsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.backgroundColor = .black
+        stackView.spacing = 0
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,8 +105,12 @@ class ViewController: UIViewController {
         
         characterView.addSubview(characterLabel)
         characterView.addSubview(readingLabel)
-        characterView.addSubview(strokesString)
-        characterView.addSubview(radicalString)
+        stringsStackView.addArrangedSubview(strokesString)
+        stringsStackView.addArrangedSubview(radicalString)
+        characterView.addSubview(stringsStackView)
+        characterView.addSubview(characterDataStackView)
+        
+        
         
         self.view.addSubview(characterView)
         
@@ -115,17 +139,17 @@ class ViewController: UIViewController {
             readingLabel.centerXAnchor.constraint(equalTo: characterView.centerXAnchor),
             readingLabel.topAnchor.constraint(equalTo: characterLabel.bottomAnchor),
             
-         
-            strokesString.widthAnchor.constraint(equalToConstant: viewWindth/2),
-            strokesString.heightAnchor.constraint(equalToConstant: 40),
-            strokesString.leadingAnchor.constraint(equalTo: characterView.leadingAnchor),
-            strokesString.bottomAnchor.constraint(equalTo: characterView.bottomAnchor),
+            stringsStackView.widthAnchor.constraint(equalToConstant: viewWindth),
+            stringsStackView.heightAnchor.constraint(equalToConstant: 40),
+            stringsStackView.centerXAnchor.constraint(equalTo: characterView.centerXAnchor),
+            stringsStackView.bottomAnchor.constraint(equalTo: characterView.bottomAnchor),
             
-            radicalString.widthAnchor.constraint(equalToConstant: viewWindth/2),
-            radicalString.heightAnchor.constraint(equalToConstant: 40),
-            radicalString.trailingAnchor.constraint(equalTo: characterView.trailingAnchor),
-            radicalString.bottomAnchor.constraint(equalTo: characterView.bottomAnchor)
-        
+            characterDataStackView.widthAnchor.constraint(equalToConstant: viewWindth),
+            characterDataStackView.heightAnchor.constraint(equalToConstant: 80),
+            characterDataStackView.centerXAnchor.constraint(equalTo: characterView.centerXAnchor),
+            characterDataStackView.bottomAnchor.constraint(equalTo: stringsStackView.topAnchor)
+            
+      
              ])
         
     }
