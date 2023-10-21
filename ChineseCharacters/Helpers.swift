@@ -29,3 +29,6 @@ enum Characters: String {
          椅, 一, 次, 有, 月, 再, 见, 怎, 样,
          这, 中, 国, 住, 桌, 昨,  坐, 做
 }
+
+
+//Add Color Helpers
