@@ -46,28 +46,24 @@ class ViewController: UIViewController {
         return view
     }()
     
-    //MARK: TODO
-    private let strokesString: UILabel = {
+    private let radicalLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .black
-        label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.text = "strokes"
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.backgroundColor = .red
+        label.textColor = .white
         return label
     }()
     
-    private let radicalString: UILabel = {
+    private let strokesLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "radical"
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.backgroundColor = .red
+        label.textColor = .white
         return label
     }()
+    
     
     private let characterDataStackView: UIStackView = {
         let stackView = UIStackView()
@@ -79,6 +75,29 @@ class ViewController: UIViewController {
         return stackView
     }()
     
+    //MARK: TODO
+    private let strokesString: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .red
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "strokes"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let radicalString: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .red
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "radical"
+        return label
+    }()
+    
     private let stringsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -88,7 +107,6 @@ class ViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,29 +126,26 @@ class ViewController: UIViewController {
         stringsStackView.addArrangedSubview(strokesString)
         stringsStackView.addArrangedSubview(radicalString)
         characterView.addSubview(stringsStackView)
+        characterDataStackView.addArrangedSubview(radicalLabel)
+        characterDataStackView.addArrangedSubview(strokesLabel)
         characterView.addSubview(characterDataStackView)
         
-        
-        
         self.view.addSubview(characterView)
-        
         
         //setConstraints
         let screenWindth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
         let viewWindth = screenWindth/1.5
         let viewHeight = screenHeight/2.5
+        
         NSLayoutConstraint.activate([
-            
             
             characterView.widthAnchor.constraint(equalToConstant:  viewWindth),
             characterView.heightAnchor.constraint(equalToConstant:  viewHeight),
             characterView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             characterView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
-            
             characterLabel.widthAnchor.constraint(equalToConstant: 200),
             characterLabel.heightAnchor.constraint(equalToConstant: 150),
-                                                   
             characterLabel.centerXAnchor.constraint(equalTo: characterView.centerXAnchor),
             characterLabel.topAnchor.constraint(equalTo: characterView.topAnchor),
             
@@ -148,8 +163,7 @@ class ViewController: UIViewController {
             characterDataStackView.heightAnchor.constraint(equalToConstant: 80),
             characterDataStackView.centerXAnchor.constraint(equalTo: characterView.centerXAnchor),
             characterDataStackView.bottomAnchor.constraint(equalTo: stringsStackView.topAnchor)
-            
-      
+        
              ])
         
     }
@@ -176,6 +190,8 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.characterLabel.text = json.char
                     self.readingLabel.text = json.readings?.mandarinpinyin?.first
+                    self.radicalLabel.text = json.radical
+                    self.strokesLabel.text = json.totalstrokes
                 }
                 
             } catch {

@@ -18,14 +18,3 @@ struct Reading: Decodable {
     let mandarinpinyin: [String]?
 }
 
-struct Course: Decodable {
-    let name: String
-}
-
-struct Dinasties: Decodable {
-    let dynasties: [DynastyInfo]?
-}
-
-struct DynastyInfo: Decodable {
-    let title: String?
-}
