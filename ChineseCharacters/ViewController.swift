@@ -172,32 +172,14 @@ class ViewController: UIViewController {
     func fetchCharacter(character: Characters) {
         let string = getCharacterLink(character: character)
         
-        guard let url = URL(string: string) else {
-            print("String problem")
-            return}
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            print(data)
+        NetworkingManager.shared.fetchData(from: string) { character in
+           print(character)
+            self.characterLabel.text = character.char
+            self.readingLabel.text = character.readings?.mandarinpinyin?.first
+            self.radicalLabel.text = character.radical
+            self.strokesLabel.text = character.totalstrokes
             
-            do {
-                let json = try JSONDecoder().decode(Character.self, from: data)
-                print(json)
-                
-                DispatchQueue.main.async {
-                    self.characterLabel.text = json.char
-                    self.readingLabel.text = json.readings?.mandarinpinyin?.first
-                    self.radicalLabel.text = json.radical
-                    self.strokesLabel.text = json.totalstrokes
-                }
-                
-            } catch {
-                print(error.localizedDescription)
-            }
-        }.resume()
+        }
     }
     
     
