@@ -14,7 +14,6 @@ class NetworkingManager {
     static let shared = NetworkingManager()
     private init() {}
     
-    
     func fetchData(from url: String?, with completion: @escaping(Character) -> Void) {
         guard let url = URL(string: url ?? "") else {return}
         URLSession.shared.dataTask(with: url) { data, _, error in
