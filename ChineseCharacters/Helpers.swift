@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Characters: String {
+enum Characters: String, CaseIterable {
     case 你, 好 ,爱, 八, 杯, 子, 北, 京, 本,
          不, 客, 气, 菜, 茶, 吃, 出, 租, 车,
          打, 话, 大, 的, 点, 电, 脑, 视, 影,

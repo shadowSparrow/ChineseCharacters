@@ -11,12 +11,10 @@ class ViewController: UIViewController {
     
     private let characterLabel: UILabel = {
         let label = UILabel()
-        
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 5
-        
         label.textColor = .white
-        label.backgroundColor = .red
+        label.backgroundColor = .black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 120.0)
         label.text = ""
@@ -26,11 +24,10 @@ class ViewController: UIViewController {
     
     private let readingLabel: UILabel = {
         let label = UILabel()
-        
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 5
         label.textColor = .white
-        label.backgroundColor = .red
+        label.backgroundColor = .green
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 36.0)
         label.text = ""
@@ -49,8 +46,8 @@ class ViewController: UIViewController {
     private let radicalLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 40)
-        label.backgroundColor = .red
+        label.font = UIFont.systemFont(ofSize: 50)
+        label.backgroundColor = .blue
         label.textColor = .white
         return label
     }()
@@ -58,12 +55,11 @@ class ViewController: UIViewController {
     private let strokesLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 40)
-        label.backgroundColor = .red
+        label.font = UIFont.systemFont(ofSize: 50)
+        label.backgroundColor = .yellow
         label.textColor = .white
         return label
     }()
-    
     
     private let characterDataStackView: UIStackView = {
         let stackView = UIStackView()
@@ -112,24 +108,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         fetchCharacter(character: Characters.脑)
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         self.view.backgroundColor = .white
         setUIElements()
     }
-    
     //MARK: CreateUI
     func setUIElements() {
-        
         characterView.addSubview(characterLabel)
         characterView.addSubview(readingLabel)
-        stringsStackView.addArrangedSubview(strokesString)
         stringsStackView.addArrangedSubview(radicalString)
+        stringsStackView.addArrangedSubview(strokesString)
         characterView.addSubview(stringsStackView)
         characterDataStackView.addArrangedSubview(radicalLabel)
         characterDataStackView.addArrangedSubview(strokesLabel)
         characterView.addSubview(characterDataStackView)
-        
         self.view.addSubview(characterView)
         
         //setConstraints
@@ -140,17 +132,17 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            characterView.widthAnchor.constraint(equalToConstant:  viewWindth),
-            characterView.heightAnchor.constraint(equalToConstant:  viewHeight),
+            characterView.widthAnchor.constraint(equalToConstant: viewWindth),
+            characterView.heightAnchor.constraint(equalToConstant: viewHeight),
             characterView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             characterView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
             characterLabel.widthAnchor.constraint(equalToConstant: 200),
             characterLabel.heightAnchor.constraint(equalToConstant: 150),
             characterLabel.centerXAnchor.constraint(equalTo: characterView.centerXAnchor),
-            characterLabel.topAnchor.constraint(equalTo: characterView.topAnchor),
+            characterLabel.topAnchor.constraint(equalTo: characterView.topAnchor, constant: 10),
             
             readingLabel.widthAnchor.constraint(equalToConstant: 200),
-            readingLabel.heightAnchor.constraint(equalToConstant: 50),
+            readingLabel.heightAnchor.constraint(equalToConstant: 38),
             readingLabel.centerXAnchor.constraint(equalTo: characterView.centerXAnchor),
             readingLabel.topAnchor.constraint(equalTo: characterLabel.bottomAnchor),
             
@@ -171,18 +163,14 @@ class ViewController: UIViewController {
     //MARK: Networking
     func fetchCharacter(character: Characters) {
         let string = getCharacterLink(character: character)
-        
         NetworkingManager.shared.fetchData(from: string) { character in
            print(character)
             self.characterLabel.text = character.char
             self.readingLabel.text = character.readings?.mandarinpinyin?.first
             self.radicalLabel.text = character.radical
             self.strokesLabel.text = character.totalstrokes
-            
         }
     }
-    
-    
     let link = "https://api.ctext.org/getcharacter?char="
     func getCharacterLink(character: Characters) -> String {
         let originalString = character.rawValue
@@ -192,8 +180,6 @@ class ViewController: UIViewController {
         let characterLink = link + escapedString
         return characterLink
     }
-    
-    
 }
 
 

@@ -9,8 +9,6 @@ import Foundation
 
 
 class NetworkingManager {
-    
-    
     static let shared = NetworkingManager()
     private init() {}
     
@@ -20,7 +18,6 @@ class NetworkingManager {
             guard let data = data else {
                 print(error?.localizedDescription ?? "No error descruption")
                 return}
-            
             do {
                 let json = try JSONDecoder().decode(Character.self, from: data)
                 DispatchQueue.main.async {
@@ -30,6 +27,5 @@ class NetworkingManager {
                 print(error)
             }
         }.resume()
-        
     }
 }
