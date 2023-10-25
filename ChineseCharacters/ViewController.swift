@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 5
         label.textColor = .white
-        label.backgroundColor = .black
+        label.backgroundColor = .blue
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 120.0)
         label.text = ""
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 5
         label.textColor = .white
-        label.backgroundColor = .green
+        label.backgroundColor = .blue
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 36.0)
         label.text = ""
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
      private let characterView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .blue
          view.layer.cornerRadius = 5
          view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
-        label.backgroundColor = .yellow
+        label.backgroundColor = .blue
         label.textColor = .white
         return label
     }()
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.spacing = 0
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = .cyan
+        //stackView.backgroundColor = .cyan
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     //MARK: TODO
     private let strokesString: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .red
+        label.backgroundColor = .blue
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
     
     private let radicalString: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .red
+        label.backgroundColor = .blue
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .white
@@ -97,7 +97,7 @@ class ViewController: UIViewController {
     private let stringsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.backgroundColor = .black
+        //stackView.backgroundColor = .black
         stackView.spacing = 0
         stackView.distribution = .fillEqually
         stackView.isHidden = true

@@ -18,10 +18,10 @@ class NetworkingManager {
         let escapedString = originalString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         guard let escapedString = escapedString else { return }
         let characterLink = charactersLink + escapedString
-        guard let url = URL(string: characterLink ?? "") else {return}
+        guard let url = URL(string: characterLink ) else {return}
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "NoError description")
                 return
             }
             do {
