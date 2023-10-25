@@ -100,14 +100,22 @@ class ViewController: UIViewController {
         stackView.backgroundColor = .black
         stackView.spacing = 0
         stackView.distribution = .fillEqually
+        stackView.isHidden = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchCharacter(character: Characters.脑)
+        NetworkingManager.shared.fetchData(of: Characters.东) { character in
+            self.characterLabel.text = character.char
+            self.readingLabel.text = character.readings?.mandarinpinyin?.first
+            self.radicalLabel.text = character.radical
+            self.strokesLabel.text = character.totalstrokes
+            self.stringsStackView.isHidden = false
+        }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         self.view.backgroundColor = .white
         setUIElements()
@@ -161,8 +169,9 @@ class ViewController: UIViewController {
     }
     
     //MARK: Networking
+    /*
     func fetchCharacter(character: Characters) {
-        let string = getCharacterLink(character: character)
+        //let string = getCharacterLink(character: character)
         NetworkingManager.shared.fetchData(from: string) { character in
            print(character)
             self.characterLabel.text = character.char
@@ -171,6 +180,9 @@ class ViewController: UIViewController {
             self.strokesLabel.text = character.totalstrokes
         }
     }
+    
+    */
+    /*
     let link = "https://api.ctext.org/getcharacter?char="
     func getCharacterLink(character: Characters) -> String {
         let originalString = character.rawValue
@@ -180,6 +192,7 @@ class ViewController: UIViewController {
         let characterLink = link + escapedString
         return characterLink
     }
+     */
 }
 
 

@@ -7,23 +7,31 @@
 
 import Foundation
 
-
 class NetworkingManager {
     static let shared = NetworkingManager()
     private init() {}
     
-    func fetchData(from url: String?, with completion: @escaping(Character) -> Void) {
-        guard let url = URL(string: url ?? "") else {return}
+    let charactersLink = "https://api.ctext.org/getcharacter?char="
+    
+    func fetchData(of character: Characters, with completion: @escaping(Character) -> Void) {
+        let originalString = character.rawValue
+        let escapedString = originalString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        guard let escapedString = escapedString else { return }
+        let characterLink = charactersLink + escapedString
+        guard let url = URL(string: characterLink ?? "") else {return}
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
-                print(error?.localizedDescription ?? "No error descruption")
-                return}
+                print(error?.localizedDescription)
+                return
+            }
             do {
                 let json = try JSONDecoder().decode(Character.self, from: data)
+                
                 DispatchQueue.main.async {
                     completion(json)
                 }
-            } catch {
+            }
+            catch {
                 print(error)
             }
         }.resume()
