@@ -8,14 +8,31 @@
 import UIKit
 
 private let reuseIdentifier = "Cell"
-let characters = Characters.allCases.shuffled()
+var characters = Characters.allCases.shuffled()
 
 class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(pressGestureAction))
+        collectionView.addGestureRecognizer(longPressGesture)
     }
 
+  
+    @objc func pressGestureAction(_ gesture: UILongPressGestureRecognizer) {
+        let gestureLocation = gesture.location(in: collectionView)
+        switch gesture.state {
+        case .began:
+            guard let targetIndexPath = collectionView.indexPathForItem(at: gestureLocation) else {return}
+            collectionView.beginInteractiveMovementForItem(at: targetIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gestureLocation)
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
     
     /*
     // MARK: - Navigation
@@ -45,6 +62,25 @@ class CollectionViewController: UICollectionViewController {
         cell.characterLabel.text = characters[indexPath.row].rawValue
         return cell
     }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        var char = characters.remove(at: sourceIndexPath.row)
+        characters.insert(char, at: destinationIndexPath.row)
+        
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        /*
+        if cell?.backgroundColor == .red {
+            cell?.backgroundColor = .blue
+        } else {
+            cell?.backgroundColor = .red
+        }
+    */
+         }
+    
 }
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
