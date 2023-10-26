@@ -72,13 +72,13 @@ class CollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        /*
+        
         if cell?.backgroundColor == .red {
             cell?.backgroundColor = .blue
         } else {
             cell?.backgroundColor = .red
         }
-    */
+    
          }
     
 }
