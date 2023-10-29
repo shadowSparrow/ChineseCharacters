@@ -65,7 +65,7 @@ class CollectionViewController: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        var char = characters.remove(at: sourceIndexPath.row)
+        let char = characters.remove(at: sourceIndexPath.row)
         characters.insert(char, at: destinationIndexPath.row)
         
     }
@@ -90,7 +90,16 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 100, height: 100)
+        
+        let inset = 10
+        let numberOfItems = 4
+        let allInsets = (inset*numberOfItems)-1
+        
+        let collectionViewWindth = Int(UIScreen.main.bounds.width) - (2*inset)
+        let pureWindth = Int(collectionViewWindth) - allInsets
+        let itemWindth = pureWindth/4
+        
+        return CGSize(width: itemWindth, height: itemWindth)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
