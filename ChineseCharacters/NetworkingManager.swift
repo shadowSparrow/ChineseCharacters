@@ -13,8 +13,8 @@ class NetworkingManager {
     
     let charactersLink = "https://api.ctext.org/getcharacter?char="
     
-    func fetchData(of character: Characters, with completion: @escaping(Character) -> Void) {
-        let originalString = character.rawValue
+    func fetchData(of character: String, with completion: @escaping(Character) -> Void) {
+        let originalString = character
         let escapedString = originalString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         guard let escapedString = escapedString else { return }
         let characterLink = charactersLink + escapedString

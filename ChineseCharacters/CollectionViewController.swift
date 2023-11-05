@@ -13,6 +13,7 @@ var characters = Characters.allCases.shuffled()
 class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Collection"
         self.collectionView!.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(pressGestureAction))
         collectionView.addGestureRecognizer(longPressGesture)
@@ -67,20 +68,24 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let char = characters.remove(at: sourceIndexPath.row)
         characters.insert(char, at: destinationIndexPath.row)
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
         
+        let destinationVC = ViewController()
+        destinationVC.character = cell.characterLabel.text ?? "Nil passed"
+        navigationController?.pushViewController(destinationVC, animated: true)
+        
+        /*
         if cell?.backgroundColor == .red {
             cell?.backgroundColor = .blue
         } else {
             cell?.backgroundColor = .red
         }
-    
-         }
-    
+        
+        */
+    }
 }
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {

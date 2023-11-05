@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    var character: String?
+    
     private let characterLabel: UILabel = {
         let label = UILabel()
         label.layer.masksToBounds = true
@@ -107,7 +110,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkingManager.shared.fetchData(of: Characters.东) { character in
+        
+        print(character!)
+        NetworkingManager.shared.fetchData(of: character ?? "No String") { character in
             self.characterLabel.text = character.char
             self.readingLabel.text = character.readings?.mandarinpinyin?.first
             self.radicalLabel.text = character.radical
@@ -117,7 +122,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .black
         setUIElements()
     }
     //MARK: CreateUI
