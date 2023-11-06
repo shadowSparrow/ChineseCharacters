@@ -111,6 +111,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = .black
+        setUIElements()
         print(character!)
         NetworkingManager.shared.fetchData(of: character ?? "No String") { character in
             self.characterLabel.text = character.char
@@ -121,10 +123,6 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.view.backgroundColor = .black
-        setUIElements()
-    }
     //MARK: CreateUI
     func setUIElements() {
         characterView.addSubview(characterLabel)

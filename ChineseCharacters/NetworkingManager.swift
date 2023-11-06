@@ -27,9 +27,12 @@ class NetworkingManager {
             do {
                 let json = try JSONDecoder().decode(Character.self, from: data)
                 
-                DispatchQueue.main.async {
-                    completion(json)
-                }
+                //DispatchQueue.global().async {
+                    DispatchQueue.main.async {
+                        completion(json)
+                    }
+                //}
+              
             }
             catch {
                 print(error)
@@ -37,3 +40,16 @@ class NetworkingManager {
         }.resume()
     }
 }
+
+/*
+ DispatchQueue.global().async {
+     guard let url = URL(string: course.imageUrl ?? "No image") else {return}
+     guard let imageData = try? Data(contentsOf: url) else {return}
+     let image = UIImage(data: imageData)
+         
+         DispatchQueue.main.async {
+         self.courseImage.image = image
+         }
+ }
+}
+ */

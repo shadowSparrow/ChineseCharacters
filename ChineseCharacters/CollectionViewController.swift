@@ -75,7 +75,12 @@ class CollectionViewController: UICollectionViewController {
         
         let destinationVC = ViewController()
         destinationVC.character = cell.characterLabel.text ?? "Nil passed"
-        navigationController?.pushViewController(destinationVC, animated: true)
+        
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+    
+        
+        
+        
         
         /*
         if cell?.backgroundColor == .red {
